@@ -11,8 +11,6 @@ The application consists of four microservices:
 * **Order Service** (Port 3002)
 * **Gateway Service** (Port 3003)
 
-The Gateway Service acts as the entry point and communicates with the other services over a shared Docker bridge network.
-
 ---
 
 ## Technologies Used
@@ -104,6 +102,16 @@ docker compose up -d
 docker compose ps
 ```
 
+<img width="1326" height="87" alt="image" src="https://github.com/user-attachments/assets/a20d443f-4219-40c1-ad17-cff379bca09d" />
+
+<img width="1207" height="462" alt="image" src="https://github.com/user-attachments/assets/b88f7d1a-201d-4cc9-a0f4-abe0cb647f4d" />
+
+```bash
+docker compose logs
+```
+
+<img width="850" height="134" alt="image" src="https://github.com/user-attachments/assets/5a0b6be9-17fb-4975-8430-6efe0866b213" />
+
 ---
 
 ## API Endpoints
@@ -111,66 +119,42 @@ docker compose ps
 ### User Service
 
 ```
+GET http://localhost:3000/health
+```
+
+```
 GET http://localhost:3000/users
 ```
+<img width="452" height="117" alt="image" src="https://github.com/user-attachments/assets/6a4d8c18-2ac6-43ef-ad35-13ec80fa6f52" />
 
 ### Product Service
 
 ```
+GET http://localhost:3001/health
+```
+
+```
 GET http://localhost:3001/products
 ```
+<img width="1198" height="210" alt="image" src="https://github.com/user-attachments/assets/e1ef3489-9d8e-4fd4-8895-9994a169067d" />
 
 ### Order Service
 
 ```
-GET http://localhost:3002/orders
+GET http://localhost:3002/health
 ```
 
-### Gateway Service
+```
+GET http://localhost:3002/orders
+```
+<img width="388" height="118" alt="image" src="https://github.com/user-attachments/assets/63fb08b5-c855-4282-ad74-72793328e84b" />
 
-Health Check
+### Gateway Service
 
 ```
 GET http://localhost:3003/health
 ```
-
-Users
-
-```
-GET http://localhost:3003/api/users
-```
-
-Products
-
-```
-GET http://localhost:3003/api/products
-```
-
-Orders
-
-```
-GET http://localhost:3003/api/orders
-```
-
-Create Order
-
-```
-POST http://localhost:3003/api/orders
-```
-
----
-
-## Docker Network
-
-All services communicate through a shared Docker bridge network defined in `docker-compose.yml`.
-
-Service-to-service communication uses Docker service names:
-
-* user-service
-* product-service
-* order-service
-
-This enables the Gateway Service to communicate internally without using localhost.
+<img width="433" height="129" alt="image" src="https://github.com/user-attachments/assets/e6d2d1ed-31f2-4530-b4f5-63c5bb35ecd2" />
 
 ---
 
@@ -235,17 +219,6 @@ docker compose down
 docker compose build --no-cache
 docker compose up
 ```
-
----
-
-## Screenshots
-
-Include the following screenshots:
-
-* Docker Desktop showing all four containers running
-* Output of `docker compose ps`
-* Successful API responses from browser or Postman
-* Terminal showing `docker compose up`
 
 ---
 
